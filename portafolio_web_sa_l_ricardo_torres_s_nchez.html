@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portafolio profesional de Saúl Ricardo Torres Sánchez (RichardParker) — Estudiante de Ingeniería Mecatrónica en UMAD. Software, IoT, Sistemas Embebidos y Programación Multiparadigma." />
+  <title>Saúl Ricardo Torres Sánchez | Portafolio de Ingeniería Mecatrónica</title>
+
+  <!-- Google Fonts: Inter (UI) y JetBrains Mono (detalles técnicos/código) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       1. VARIABLES DE DISEÑO Y TEMAS (MODO OSCURO POR DEFECTO + MODO CLARO)
+       ========================================================================== */
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+      /* Paleta Modo Oscuro (Por defecto) */
+      --bg-primary: #0b1120;
+      --bg-secondary: #0f172a;
+      --bg-card: #111827;
+      --bg-card-elevated: #1e293b;
+      --bg-nav: rgba(11, 17, 32, 0.82);
+      --bg-badge: rgba(56, 189, 248, 0.1);
+      --bg-badge-cyan: rgba(34, 211, 238, 0.12);
+      --bg-tag: rgba(30, 41, 59, 0.85);
+
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      --accent-blue: #38bdf8;
+      --accent-cyan: #22d3ee;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --accent-contrast: #0b1120;
+
+      --border-subtle: rgba(148, 163, 184, 0.14);
+      --border-hover: rgba(56, 189, 248, 0.45);
+      --grid-line: rgba(56, 189, 248, 0.045);
+
+      --shadow-card: 0 10px 30px -12px rgba(2, 6, 23, 0.65);
+      --shadow-hover: 0 20px 35px -14px rgba(2, 6, 23, 0.85), 0 0 20px -6px rgba(56, 189, 248, 0.18);
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+
+      --transition: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+      --max-width: 1120px;
+      --nav-height: 70px;
+    }
+
+    /* Paleta Modo Claro */
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-card-elevated: #f8fafc;
+      --bg-nav: rgba(248, 250, 252, 0.88);
+      --bg-badge: rgba(2, 132, 199, 0.1);
+      --bg-badge-cyan: rgba(8, 145, 178, 0.12);
+      --bg-tag: #f1f5f9;
+
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+
+      --accent-blue: #0284c7;
+      --accent-cyan: #0891b2;
+      --accent-glow: rgba(2, 132, 199, 0.2);
+      --accent-contrast: #ffffff;
+
+      --border-subtle: rgba(15, 23, 42, 0.1);
+      --border-hover: rgba(2, 132, 199, 0.45);
+      --grid-line: rgba(2, 132, 199, 0.06);
+
+      --shadow-card: 0 8px 24px -10px rgba(15, 23, 42, 0.08);
+      --shadow-hover: 0 18px 34px -12px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(2, 132, 199, 0.22);
+    }
+
+    /* ==========================================================================
+       2. RESET MODERNO Y BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.65;
+      overflow-x: hidden;
+      transition: background-color var(--transition), color var(--transition);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Fondo sutil de cuadrícula de ingeniería */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, #000 35%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 85% 65% at 50% 0%, #000 35%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Resplandor ambiental superior */
+    body::after {
+      content: "";
+      position: fixed;
+      top: -180px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(900px, 100vw);
+      height: 420px;
+      z-index: -1;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(34, 211, 238, 0.04) 45%, transparent 72%);
+      pointer-events: none;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* ==========================================================================
+       3. BARRA DE NAVEGACIÓN FIJA
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      z-index: 100;
+      background: var(--bg-nav);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: background-color var(--transition), border-color var(--transition);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: var(--accent-contrast);
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .brand-accent {
+      color: var(--accent-blue);
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      transition: color var(--transition), background-color var(--transition);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent-blue);
+      background: var(--bg-badge);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      transition: border-color var(--transition), color var(--transition), transform var(--transition), background-color var(--transition);
+    }
+
+    .icon-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    .icon-btn svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    /* Íconos del selector de tema */
+    [data-theme="dark"] .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+
+    /* Menú móvil desplegable */
+    .mobile-menu {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      box-shadow: var(--shadow-card);
+      transform: translateY(-16px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+      z-index: 95;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .mobile-menu .nav-link {
+      padding: 0.75rem 1rem;
+      font-size: 0.96rem;
+    }
+
+    /* ==========================================================================
+       4. ENCABEZADO / HERO
+       ========================================================================== */
+    .hero {
+      padding: calc(var(--nav-height) + 3.5rem) 0 4.5rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Avatar circular con borde luminoso */
+    .avatar-wrapper {
+      position: relative;
+      width: 172px;
+      height: 172px;
+      margin: 0 auto;
+      border-radius: var(--radius-full);
+      padding: 4px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan), #6366f1);
+      box-shadow: 0 0 38px -6px var(--accent-glow), 0 12px 28px -10px rgba(0, 0, 0, 0.5);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .avatar-wrapper:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 48px -2px var(--accent-glow), 0 16px 32px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 3px solid var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      display: none; /* Se muestra automáticamente si foto.jpg no se encuentra */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-fallback svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Etiqueta estilo terminal */
+    .terminal-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--accent-cyan);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 1.15rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+      animation: pulse-dot 2.2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 0.65; }
+    }
+
+    .hero-name {
+      font-size: clamp(2rem, 4.8vw, 3.35rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.85rem;
+      background: linear-gradient(120deg, var(--text-primary) 55%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-role {
+      font-size: clamp(1.02rem, 2.1vw, 1.25rem);
+      font-weight: 600;
+      color: var(--accent-blue);
+      margin-bottom: 1rem;
+    }
+
+    .hero-summary {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin: 0 auto 1.85rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.9rem;
+    }
+
+    /* Botones reutilizables */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.8rem 1.45rem;
+      font-size: 0.93rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition), border-color var(--transition), color var(--transition);
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: var(--accent-contrast);
+      box-shadow: 0 8px 22px -6px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -6px var(--accent-glow);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      color: var(--accent-blue);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ==========================================================================
+       5. SECCIONES Y ENCABEZADOS
+       ========================================================================== */
+    section {
+      padding: 4.25rem 0;
+      scroll-margin-top: calc(var(--nav-height) + 0.5rem);
+    }
+
+    .section-header {
+      margin-bottom: 2.25rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.55rem, 3vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: 0.45rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      max-width: 680px;
+      font-size: 0.98rem;
+    }
+
+    /* Tarjetas base */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.65rem;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Etiquetas / Tags */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.77rem;
+      font-weight: 500;
+      color: var(--accent-blue);
+      background: var(--bg-tag);
+      border: 1px solid var(--border-subtle);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-full);
+      transition: border-color var(--transition), background-color var(--transition);
+    }
+
+    .tag:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-badge);
+    }
+
+    /* ==========================================================================
+       6. ESTUDIOS PRINCIPALES (#estudios)
+       ========================================================================== */
+    .education-card {
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .education-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent-blue), var(--accent-cyan));
+    }
+
+    .edu-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .edu-icon-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .edu-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: var(--bg-badge);
+      border: 1px solid var(--border-hover);
+      color: var(--accent-blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .edu-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .edu-degree {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-institution {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .edu-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      background: var(--bg-badge-cyan);
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+
+    .edu-areas-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    /* ==========================================================================
+       7. PROYECTOS ACTUALES (#proyectos-actuales)
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Resalte especial para el proyecto principal de Programación Multiparadigma */
+    .project-card.featured {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-card-elevated) 100%);
+    }
+
+    .project-card.featured::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.7rem;
+      border-radius: var(--radius-full);
+      color: var(--accent-cyan);
+      background: var(--bg-badge-cyan);
+      border: 1px solid rgba(34, 211, 238, 0.25);
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.7rem;
+      border-radius: var(--radius-full);
+      color: var(--accent-contrast);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 0.65rem;
+    }
+
+    .project-desc {
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+    }
+
+    .project-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.68rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      background: var(--bg-card-elevated);
+      border: 1px solid var(--border-subtle);
+      transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+    }
+
+    .project-link:hover {
+      background: var(--bg-badge);
+      border-color: var(--border-hover);
+      color: var(--accent-blue);
+    }
+
+    .project-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ==========================================================================
+       8. PROYECTOS PREVIOS Y FILTROS (#proyectos-previos)
+       ========================================================================== */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .filter-btn {
+      padding: 0.55rem 1.05rem;
+      border-radius: var(--radius-full);
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all var(--transition);
+    }
+
+    .filter-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      color: var(--accent-contrast);
+      border-color: transparent;
+      box-shadow: 0 6px 18px -6px var(--accent-glow);
+    }
+
+    .filter-count {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .prev-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.15rem;
+    }
+
+    .prev-card.hidden-card {
+      display: none;
+    }
+
+    .category-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      margin-bottom: 0.6rem;
+    }
+
+    /* ==========================================================================
+       9. HABILIDADES TÉCNICAS (#habilidades)
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .skill-header {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--bg-badge);
+      border: 1px solid var(--border-subtle);
+      color: var(--accent-cyan);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .skill-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .skill-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .skill-list li {
+      position: relative;
+      padding-left: 1.15rem;
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+    }
+
+    .skill-list li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      color: var(--accent-blue);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================================================
+       10. MÁS SOBRE MÍ / INTERESES (#intereses)
+       ========================================================================== */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.35rem;
+    }
+
+    .interest-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .interest-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-md);
+      background: var(--bg-badge-cyan);
+      border: 1px solid var(--border-subtle);
+      color: var(--accent-blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .interest-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .interest-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .interest-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       11. CONTACTO Y PIE DE PÁGINA (#contacto)
+       ========================================================================== */
+    .footer-section {
+      margin-top: 2rem;
+      padding: 4rem 0 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+      background: linear-gradient(180deg, transparent 0%, var(--bg-secondary) 100%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 1.4rem;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--bg-badge);
+      color: var(--accent-blue);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      word-break: break-word;
+    }
+
+    .copy-btn {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--accent-blue);
+      background: var(--bg-badge);
+      border: 1px solid transparent;
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+
+    .copy-btn:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-elevated);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border-subtle);
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .footer-credit {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .footer-credit strong {
+      color: var(--accent-blue);
+    }
+
+    /* Notificación flotante (Toast) al copiar correo */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--bg-card-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-hover);
+      padding: 0.8rem 1.2rem;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-hover);
+      transform: translateY(18px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition), transform var(--transition);
+      z-index: 200;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       12. ANIMACIONES SUTILES AL HACER SCROLL
+       ========================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       13. DISEÑO RESPONSIVO (TABLET Y ESCRITORIO)
+       ========================================================================== */
+    @media (min-width: 640px) {
+      .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 820px) {
+      .hero {
+        padding: calc(var(--nav-height) + 5rem) 0 5.5rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 210px 1fr;
+        gap: 3.25rem;
+        text-align: left;
+      }
+
+      .avatar-wrapper {
+        width: 205px;
+        height: 205px;
+        margin: 0;
+      }
+
+      .hero-summary {
+        margin: 0 0 2rem;
+      }
+
+      .hero-actions {
+        justify-content: flex-start;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        text-align: left;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .nav-links {
+        display: flex;
+      }
+
+      #menuToggle {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .status-dot { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       BARRA DE NAVEGACIÓN FIJA
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#inicio" class="brand" aria-label="Inicio — RichardParker">
+        <span class="brand-mark">RP</span>
+        <span>Richard<span class="brand-accent">Parker</span></span>
+      </a>
+
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#estudios" class="nav-link">Estudios</a></li>
+          <li><a href="#proyectos-actuales" class="nav-link">Actuales</a></li>
+          <li><a href="#proyectos-previos" class="nav-link">Previos</a></li>
+          <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+          <li><a href="#intereses" class="nav-link">Sobre mí</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Botón de cambio de tema (Oscuro / Claro) -->
+        <button id="themeToggle" class="icon-btn" type="button" aria-label="Cambiar entre modo oscuro y modo claro" title="Alternar modo claro / oscuro">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path><path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path><path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+
+        <!-- Botón menú móvil -->
+        <button id="menuToggle" class="icon-btn" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú desplegable para dispositivos móviles -->
+  <nav id="mobileMenu" class="mobile-menu" aria-label="Navegación móvil">
+    <a href="#estudios" class="nav-link">Estudios</a>
+    <a href="#proyectos-actuales" class="nav-link">Proyectos Actuales</a>
+    <a href="#proyectos-previos" class="nav-link">Proyectos Previos</a>
+    <a href="#habilidades" class="nav-link">Habilidades</a>
+    <a href="#intereses" class="nav-link">Más sobre mí</a>
+    <a href="#contacto" class="nav-link">Contacto</a>
+  </nav>
+
+  <main>
+    <!-- ======================================================================
+         1. ENCABEZADO / HERO
+         ====================================================================== -->
+    <section id="inicio" class="hero">
+      <div class="container hero-grid">
+
+        <!--
+          INSTRUCCIÓN PARA TU FOTO DE PERFIL:
+          Coloca tu fotografía en la misma carpeta raíz que este archivo index.html
+          con el nombre exacto "foto.jpg" (formato cuadrado recomendado, ej. 500x500 px).
+          Mientras foto.jpg no exista en el repositorio, se mostrará automáticamente
+          el avatar SVG estilizado con las iniciales "RP".
+        -->
+        <div class="avatar-wrapper reveal">
+          <div class="avatar-inner">
+            <img
+              id="profilePhoto"
+              src="foto.jpg"
+              alt="Saúl Ricardo Torres Sánchez"
+              class="avatar-img"
+              onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';"
+            />
+            <div id="avatarFallback" class="avatar-fallback" role="img" aria-label="Avatar con iniciales RP de Saúl Ricardo Torres Sánchez">
+              <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="rpBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#0f172a" />
+                    <stop offset="55%" stop-color="#172554" />
+                    <stop offset="100%" stop-color="#0e7490" />
+                  </linearGradient>
+                  <linearGradient id="rpText" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#e0f2fe" />
+                    <stop offset="100%" stop-color="#38bdf8" />
+                  </linearGradient>
+                </defs>
+                <rect width="200" height="200" fill="url(#rpBg)" />
+                <!-- Anillos técnicos decorativos -->
+                <circle cx="100" cy="100" r="82" fill="none" stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1.5" stroke-dasharray="6 6" />
+                <circle cx="100" cy="100" r="66" fill="none" stroke="#22d3ee" stroke-opacity="0.16" stroke-width="1" />
+                <text x="100" y="116" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="700" font-size="60" letter-spacing="-2" fill="url(#rpText)">RP</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-content reveal">
+          <div class="terminal-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>@RichardParker · Puebla, México</span>
+          </div>
+
+          <h1 class="hero-name">Saúl Ricardo Torres Sánchez</h1>
+
+          <p class="hero-role">
+            Estudiante de Ingeniería Mecatrónica | Software, IoT y Sistemas Embebidos
+          </p>
+
+          <p class="hero-summary">
+            Apasionado por unir el hardware y el software mediante programación multiparadigma, electrónica, automatización, realidad virtual y desarrollo web.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#proyectos-actuales" class="btn btn-primary">
+              <span>Ver Proyectos Actuales</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14"></path>
+                <path d="m19 12-7 7-7-7"></path>
+              </svg>
+            </a>
+
+            <!-- REEMPLAZA "tu-usuario" CON TU NOMBRE REAL DE USUARIO EN GITHUB -->
+            <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. ESTUDIOS PRINCIPALES (#estudios)
+         ====================================================================== -->
+    <section id="estudios">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">// 01. Formación Académica</div>
+          <h2 class="section-title">Estudios Principales</h2>
+          <p class="section-subtitle">
+            Base sólida en ingeniería multidisciplinaria integrando electrónica, control, manufactura y desarrollo de software.
+          </p>
+        </div>
+
+        <article class="card education-card reveal">
+          <div class="edu-top">
+            <div class="edu-icon-row">
+              <div class="edu-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="edu-degree">Ingeniería Mecatrónica</h3>
+                <p class="edu-institution">Universidad Madero (UMAD) — Puebla, México</p>
+              </div>
+            </div>
+
+            <span class="edu-status">
+              <span class="status-dot" aria-hidden="true"></span>
+              En curso · Licenciatura / Ingeniería
+            </span>
+          </div>
+
+          <div>
+            <p class="edu-areas-title">Materias y áreas clave</p>
+            <div class="tag-list">
+              <span class="tag">Programación Multiparadigma</span>
+              <span class="tag">Microcontroladores y Sensores Inteligentes</span>
+              <span class="tag">Electrónica Digital y Analógica</span>
+              <span class="tag">Sistemas de Control</span>
+              <span class="tag">Neumática y Electroneumática</span>
+              <span class="tag">CAD/CAM y Manufactura Asistida</span>
+              <span class="tag">Métodos Numéricos</span>
+              <span class="tag">Procesos Industriales</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. PROYECTOS ACTUALES (#proyectos-actuales)
+         ====================================================================== -->
+    <section id="proyectos-actuales">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">// 02. En Desarrollo &amp; Recientes</div>
+          <h2 class="section-title">Proyectos Actuales</h2>
+          <p class="section-subtitle">
+            Desarrollos activos enfocados en programación multiparadigma, interacción hardware-navegador e Internet de las Cosas.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Proyecto Actual 1: Destacado Programación Multiparadigma -->
+          <article class="card project-card featured reveal">
+            <div>
+              <div class="badge-row">
+                <span class="featured-badge">★ Multiparadigma</span>
+                <span class="status-badge">En desarrollo / Reciente</span>
+              </div>
+              <h3 class="project-title">Prototipo FPS 3D en Python (Ursina Engine)</h3>
+              <p class="project-desc">
+                Videojuego en primera persona en 3D con enemigos zombis, sistema de munición y progresión por misiones. Desarrollado en Python aplicando programación multiparadigma (orientada a objetos y dirigida por eventos).
+              </p>
+            </div>
+
+            <div class="project-footer">
+              <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">Ursina Engine</span>
+                <span class="tag">POO</span>
+                <span class="tag">Multiparadigma</span>
+              </div>
+              <!-- ACTUALIZA LA URL CON EL REPOSITORIO DE TU PROYECTO FPS EN PYTHON -->
+              <a href="https://github.com/tu-usuario/prototipo-fps-python-ursina" target="_blank" rel="noopener noreferrer" class="project-link">
+                <span>Ver en GitHub</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7"></path>
+                  <path d="M7 7h10v10"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Proyecto Actual 2 -->
+          <article class="card project-card reveal">
+            <div>
+              <div class="badge-row">
+                <span class="status-badge">En desarrollo / Reciente</span>
+              </div>
+              <h3 class="project-title">ASTRO-UMAD: Arcade Espacial + Control Físico</h3>
+              <p class="project-desc">
+                Videojuego espacial en navegador (HTML5/JS) comunicado en tiempo real mediante Web Serial API con un control físico de joystick y botones construido con Arduino.
+              </p>
+            </div>
+
+            <div class="project-footer">
+              <div class="tag-list">
+                <span class="tag">HTML/JS</span>
+                <span class="tag">Web Serial API</span>
+                <span class="tag">Arduino</span>
+                <span class="tag">C++</span>
+              </div>
+              <!-- ACTUALIZA LA URL CON EL REPOSITORIO DE ASTRO-UMAD -->
+              <a href="https://github.com/tu-usuario/astro-umad" target="_blank" rel="noopener noreferrer" class="project-link">
+                <span>Ver en GitHub</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7"></path>
+                  <path d="M7 7h10v10"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Proyecto Actual 3 -->
+          <article class="card project-card reveal">
+            <div>
+              <div class="badge-row">
+                <span class="status-badge">En desarrollo / Reciente</span>
+              </div>
+              <h3 class="project-title">Sistema IoT de Riego Automatizado (ESP32)</h3>
+              <p class="project-desc">
+                Monitoreo multisensor de humedad del suelo y activación automática de bomba de agua con panel de control web responsivo.
+              </p>
+            </div>
+
+            <div class="project-footer">
+              <div class="tag-list">
+                <span class="tag">ESP32</span>
+                <span class="tag">IoT</span>
+                <span class="tag">Sensores</span>
+                <span class="tag">Interfaz Web</span>
+              </div>
+              <!-- ACTUALIZA LA URL CON EL REPOSITORIO DE RIEGO IOT -->
+              <a href="https://github.com/tu-usuario/sistema-iot-riego-esp32" target="_blank" rel="noopener noreferrer" class="project-link">
+                <span>Ver en GitHub</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M7 17 17 7"></path>
+                  <path d="M7 7h10v10"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. PROYECTOS PREVIOS CON FILTROS INTERACTIVOS (#proyectos-previos)
+         ====================================================================== -->
+    <section id="proyectos-previos">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">// 03. Trayectoria Técnica</div>
+          <h2 class="section-title">Proyectos Previos</h2>
+          <p class="section-subtitle">
+            Prototipos electrónicos, aplicaciones web y despliegues de realidad virtual desarrollados anteriormente.
+          </p>
+        </div>
+
+        <!-- Barra de filtros interactivos -->
+        <div class="filter-bar reveal">
+          <div class="filter-buttons" role="group" aria-label="Filtrar proyectos previos por categoría">
+            <button type="button" class="filter-btn active" data-filter="todos" aria-pressed="true">Todos</button>
+            <button type="button" class="filter-btn" data-filter="electronica-iot" aria-pressed="false">Electrónica &amp; IoT</button>
+            <button type="button" class="filter-btn" data-filter="software-web" aria-pressed="false">Software &amp; Web</button>
+            <button type="button" class="filter-btn" data-filter="vr-manufactura" aria-pressed="false">VR &amp; Manufactura</button>
+          </div>
+          <span id="filterCount" class="filter-count">Mostrando 5 de 5 proyectos</span>
+        </div>
+
+        <div class="projects-grid" id="prevProjectsGrid">
+          <!-- Proyecto Previo 1 -->
+          <article class="card prev-card reveal" data-category="electronica-iot">
+            <div>
+              <div class="category-label">Electrónica &amp; IoT</div>
+              <h3 class="project-title">Control Domótico HUD estilo J.A.R.V.I.S.</h3>
+              <p class="project-desc">
+                Servidor web en ESP32 con interfaz futurista tipo HUD para controlar 4 canales de relevadores en cargas de 110V AC.
+              </p>
+            </div>
+            <div class="tag-list">
+              <span class="tag">ESP32</span>
+              <span class="tag">C++</span>
+              <span class="tag">WebServer</span>
+              <span class="tag">110V AC</span>
+            </div>
+          </article>
+
+          <!-- Proyecto Previo 2 -->
+          <article class="card prev-card reveal" data-category="electronica-iot">
+            <div>
+              <div class="category-label">Electrónica &amp; IoT</div>
+              <h3 class="project-title">Dimmer AC en PCB Personalizada</h3>
+              <p class="project-desc">
+                Diseño y fabricación de placa de circuito impreso (5×3 cm) con TRIAC BTA08 y DIAC DB3 para regulación de potencia en corriente alterna.
+              </p>
+            </div>
+            <div class="tag-list">
+              <span class="tag">PCB</span>
+              <span class="tag">Electrónica de Potencia</span>
+              <span class="tag">TRIAC/DIAC</span>
+            </div>
+          </article>
+
+          <!-- Proyecto Previo 3 -->
+          <article class="card prev-card reveal" data-category="software-web">
+            <div>
+              <div class="category-label">Software &amp; Web</div>
+              <h3 class="project-title">Calculadora y Graficadora de Ecuaciones</h3>
+              <p class="project-desc">
+                Aplicación web responsiva de una sola página desplegada en GitHub Pages para resolución y graficación interactiva con Chart.js.
+              </p>
+            </div>
+            <div class="tag-list">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Chart.js</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+          </article>
+
+          <!-- Proyecto Previo 4 -->
+          <article class="card prev-card reveal" data-category="vr-manufactura">
+            <div>
+              <div class="category-label">VR &amp; Manufactura</div>
+              <h3 class="project-title">Despliegue VR: NAVE 5.0 en Meta Quest 3</h3>
+              <p class="project-desc">
+                Configuración, optimización y despliegue de entorno interactivo de realidad virtual en visores Meta Quest 3.
+              </p>
+            </div>
+            <div class="tag-list">
+              <span class="tag">Meta Quest 3</span>
+              <span class="tag">Realidad Virtual</span>
+              <span class="tag">Optimización</span>
+            </div>
+          </article>
+
+          <!-- Proyecto Previo 5 -->
+          <article class="card prev-card reveal" data-category="electronica-iot">
+            <div>
+              <div class="category-label">Electrónica &amp; IoT</div>
+              <h3 class="project-title">Llenado Automático de Botellas</h3>
+              <p class="project-desc">
+                Prototipo mecatrónico controlado con Arduino y caudalímetro YF-S201 para dosificación precisa de líquidos.
+              </p>
+            </div>
+            <div class="tag-list">
+              <span class="tag">Arduino</span>
+              <span class="tag">YF-S201</span>
+              <span class="tag">Mecánica de Fluidos</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. HABILIDADES TÉCNICAS (#habilidades)
+         ====================================================================== -->
+    <section id="habilidades">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">// 04. Stack Técnico</div>
+          <h2 class="section-title">Habilidades Técnicas</h2>
+          <p class="section-subtitle">
+            Herramientas de software, plataformas embebidas, manufactura digital y simulación industrial.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Columna 1: Programación y Software -->
+          <article class="card reveal">
+            <div class="skill-header">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <h3 class="skill-title">Programación y Software</h3>
+            </div>
+            <ul class="skill-list">
+              <li>Python (Ursina, NumPy, Matplotlib, Tkinter)</li>
+              <li>C/C++ (Arduino, ESP32, PIC)</li>
+              <li>HTML5, CSS3 y JavaScript</li>
+              <li>Excel VBA</li>
+              <li>Git &amp; GitHub</li>
+            </ul>
+          </article>
+
+          <!-- Columna 2: Hardware y Fabricación Digital -->
+          <article class="card reveal">
+            <div class="skill-header">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="6" y="6" width="12" height="12" rx="2"></rect>
+                  <rect x="9" y="9" width="6" height="6"></rect>
+                  <path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path>
+                </svg>
+              </div>
+              <h3 class="skill-title">Hardware y Fabricación Digital</h3>
+            </div>
+            <ul class="skill-list">
+              <li>Arduino y ESP32</li>
+              <li>Microcontroladores PIC</li>
+              <li>Diseño de PCBs</li>
+              <li>Impresión 3D (Bambu Lab X1 Carbon / Ender 3)</li>
+              <li>Corte Láser CNC</li>
+            </ul>
+          </article>
+
+          <!-- Columna 3: Ingeniería, CAD y Simulación -->
+          <article class="card reveal">
+            <div class="skill-header">
+              <div class="skill-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2 2 7l10 5 10-5-10-5Z"></path>
+                  <path d="m2 17 10 5 10-5"></path>
+                  <path d="m2 12 10 5 10-5"></path>
+                </svg>
+              </div>
+              <h3 class="skill-title">Ingeniería, CAD y Simulación</h3>
+            </div>
+            <ul class="skill-list">
+              <li>Siemens Tecnomatix Process Simulate</li>
+              <li>NX, Solid Edge y AutoCAD</li>
+              <li>Proteus y FluidSIM</li>
+              <li>Unreal Engine</li>
+              <li>SAP S/4HANA</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. MÁS SOBRE MÍ / INTERESES (#intereses)
+         ====================================================================== -->
+    <section id="intereses">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-kicker">// 05. Perfil Personal</div>
+          <h2 class="section-title">Más sobre mí e Intereses</h2>
+          <p class="section-subtitle">
+            Iniciativas educativas, deporte, tecnología inmersiva y colaboración fuera del laboratorio.
+          </p>
+        </div>
+
+        <div class="interests-grid">
+          <article class="card interest-card reveal">
+            <div class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                <path d="M8 7h6"></path>
+                <path d="M8 11h8"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="interest-title">Tutoría de Matemáticas</h3>
+              <p class="interest-desc">
+                Clases particulares uno a uno de álgebra y matemáticas para estudiantes de preparatoria, creando diagnósticos y material didáctico propio.
+              </p>
+            </div>
+          </article>
+
+          <article class="card interest-card reveal">
+            <div class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                <path d="M4 22h16"></path>
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="interest-title">Deporte y Competencia</h3>
+              <p class="interest-desc">
+                Portero en fútbol local y seguidor apasionado de la Fórmula 1.
+              </p>
+            </div>
+          </article>
+
+          <article class="card interest-card reveal">
+            <div class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="10" rx="3"></rect>
+                <path d="M8 12h.01"></path>
+                <path d="M16 12h.01"></path>
+                <path d="M10 17l2-3 2 3"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="interest-title">Gaming y Realidad Virtual</h3>
+              <p class="interest-desc">
+                Entusiasta de los videojuegos, el hardware de alto rendimiento y la exploración de entornos en Realidad Virtual.
+              </p>
+            </div>
+          </article>
+
+          <article class="card interest-card reveal">
+            <div class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="interest-title">Proyectos Independientes</h3>
+              <p class="interest-desc">
+                Experiencia en logística de eventos, atención al cliente y trabajo multidisciplinario.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       7. PIE DE PÁGINA / CONTACTO (#contacto)
+       ======================================================================== -->
+  <footer id="contacto" class="footer-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">// 06. Conectemos</div>
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-subtitle">
+          ¿Te interesa colaborar en proyectos de software, mecatrónica, IoT o realidad virtual? Contáctame directamente.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- GitHub: REEMPLAZA "tu-usuario" CON TU USUARIO REAL -->
+        <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer" class="card contact-card reveal">
+          <div class="contact-info">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">github.com/tu-usuario</div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Correo electrónico: REEMPLAZA EL CORREO DE EJEMPLO POR EL TUYO -->
+        <div class="card contact-card reveal">
+          <a href="mailto:tu.correo@ejemplo.com" class="contact-info">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-label">Correo electrónico</div>
+              <div class="contact-value" id="emailText">tu.correo@ejemplo.com</div>
+            </div>
+          </a>
+          <button type="button" id="copyEmailBtn" class="copy-btn" aria-label="Copiar dirección de correo electrónico">Copiar</button>
+        </div>
+
+        <!-- Ubicación -->
+        <div class="card contact-card reveal">
+          <div class="contact-info">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <div class="contact-label">Ubicación</div>
+              <div class="contact-value">Puebla, México</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-credit">Desarrollado por <strong>RichardParker</strong> &copy; 2026</p>
+        <p>Portafolio de Ingeniería Mecatrónica · Publicado en GitHub Pages</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notificación sutil para copiado al portapapeles -->
+  <div id="toast" class="toast" role="status" aria-live="polite">Correo copiado al portapapeles</div>
+
+  <!-- ========================================================================
+       JAVASCRIPT MÍNIMO: TEMA, MENÚ MÓVIL, FILTROS, SCROLL Y COPIAR CORREO
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ----------------------------------------------------------------------
+         1. ALTERNAR MODO OSCURO / MODO CLARO (PERSISTENTE)
+         ---------------------------------------------------------------------- */
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        try {
+          localStorage.setItem('rp-portfolio-theme', theme);
+        } catch (err) {
+          // Ignorar silenciosamente si el almacenamiento local no está disponible
+        }
+      }
+
+      // Cargar tema guardado (por defecto 'dark')
+      try {
+        const savedTheme = localStorage.getItem('rp-portfolio-theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          root.setAttribute('data-theme', savedTheme);
+        }
+      } catch (err) {
+        root.setAttribute('data-theme', 'dark');
+      }
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+          const current = root.getAttribute('data-theme') || 'dark';
+          applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+      }
+
+      /* ----------------------------------------------------------------------
+         2. MENÚ RESPONSIVO MÓVIL
+         ---------------------------------------------------------------------- */
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function () {
+          const isOpen = mobileMenu.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        mobileMenu.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            mobileMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      /* ----------------------------------------------------------------------
+         3. FILTROS INTERACTIVOS DE PROYECTOS PREVIOS
+         ---------------------------------------------------------------------- */
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const prevCards = document.querySelectorAll('#prevProjectsGrid .prev-card');
+      const filterCount = document.getElementById('filterCount');
+      const totalPrev = prevCards.length;
+
+      filterButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const selected = btn.getAttribute('data-filter');
+
+          filterButtons.forEach(function (other) {
+            const isActive = other === btn;
+            other.classList.toggle('active', isActive);
+            other.setAttribute('aria-pressed', String(isActive));
+          });
+
+          let visibleCount = 0;
+          prevCards.forEach(function (card) {
+            const category = card.getAttribute('data-category');
+            const matches = selected === 'todos' || category === selected;
+            card.classList.toggle('hidden-card', !matches);
+            if (matches) {
+              visibleCount++;
+              card.classList.add('visible');
+            }
+          });
+
+          if (filterCount) {
+            const label = visibleCount === 1 ? 'proyecto' : 'proyectos';
+            filterCount.textContent = 'Mostrando ' + visibleCount + ' de ' + totalPrev + ' ' + label;
+          }
+        });
+      });
+
+      /* ----------------------------------------------------------------------
+         4. ANIMACIONES SUTILES AL HACER SCROLL + ENLACE ACTIVO EN NAVBAR
+         ---------------------------------------------------------------------- */
+      const revealEls = document.querySelectorAll('.reveal');
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
+        );
+
+        revealEls.forEach(function (el) {
+          revealObserver.observe(el);
+        });
+
+        // Resaltar sección activa en la barra de navegación
+        const sections = document.querySelectorAll('main section[id], footer[id]');
+        const navLinks = document.querySelectorAll('.navbar .nav-link');
+
+        const navObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                const activeId = entry.target.getAttribute('id');
+                navLinks.forEach(function (link) {
+                  const isMatch = link.getAttribute('href') === '#' + activeId;
+                  link.classList.toggle('active', isMatch);
+                });
+              }
+            });
+          },
+          { rootMargin: '-40% 0px -50% 0px' }
+        );
+
+        sections.forEach(function (sec) {
+          navObserver.observe(sec);
+        });
+      } else {
+        // Respaldo para navegadores sin IntersectionObserver
+        revealEls.forEach(function (el) {
+          el.classList.add('visible');
+        });
+      }
+
+      /* ----------------------------------------------------------------------
+         5. VERIFICACIÓN SEGURA DE FOTO DE PERFIL (FALLBACK AUTOMÁTICO)
+         ---------------------------------------------------------------------- */
+      const profilePhoto = document.getElementById('profilePhoto');
+      const avatarFallback = document.getElementById('avatarFallback');
+
+      if (profilePhoto && avatarFallback) {
+        if (profilePhoto.complete && profilePhoto.naturalWidth === 0) {
+          profilePhoto.style.display = 'none';
+          avatarFallback.style.display = 'flex';
+        }
+      }
+
+      /* ----------------------------------------------------------------------
+         6. COPIAR CORREO ELECTRÓNICO CON NOTIFICACIÓN TOAST
+         ---------------------------------------------------------------------- */
+      const copyEmailBtn = document.getElementById('copyEmailBtn');
+      const emailText = document.getElementById('emailText');
+      const toast = document.getElementById('toast');
+      let toastTimer = null;
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('show');
+        }, 2400);
+      }
+
+      if (copyEmailBtn && emailText) {
+        copyEmailBtn.addEventListener('click', function () {
+          const email = emailText.textContent.trim();
+          try {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = email;
+            tempInput.setAttribute('readonly', '');
+            tempInput.style.position = 'fixed';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Correo copiado: ' + email);
+          } catch (err) {
+            showToast('Selecciona el correo para copiarlo');
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
